@@ -1,5 +1,11 @@
 from pathlib import Path
-import re,html
+import re,html,os
+from urllib.parse import urlparse
+site_url=os.environ.get("SITE_URL", "https://preview-jimny-after04.buddica-custom-jimny.pages.dev").rstrip("/")
+if urlparse(site_url).scheme != "https" or not urlparse(site_url).netloc:
+ raise ValueError("SITE_URL must be an absolute HTTPS origin")
+page_url=html.escape(site_url+"/jimny/", quote=True)
+image_url=html.escape(site_url+"/jimny/assets/ogp.png", quote=True)
 root=Path(__file__).resolve().parents[1]
 # Reviewed After_04 content, shared by both responsive layouts.
 full=[('フロント','CL20グリル（エンブレムレス）\nブラックLEDヘッドライト'),('足まわり','2インチリフトアップ\nキャリパーカバー\n（BUDDICAロゴ入り）'),('タイヤ・ホイール','ランドフット GWD＋オプカン R/T\n225/70R16\nタイヤ・ホイール各5本'),('ルーフ','スクエアルーフラック'),('リア','CL20 2型リアバンパー ASSY\nCL20 リアEXバンパー\nスペアタイヤオフセットブラケット'),('フロント下部','CL20バンパー\nスキッドプレート'),('室内装備','シートベルト（BUDDICAロゴ入り）\nカメラ・モニター\nシートカバー')]
@@ -23,7 +29,26 @@ detail=''
 for photo,title,desc,cls in [('ef86f.png','CL20グリル（エンブレムレス）','フロントの印象を引き締めるグリル。',''),('00ac3.png','キャリパーカバー（BUDDICAロゴ入り）','足まわりにロゴ入りのアクセント。',''),('233d9.png','スクエアルーフラック','ルーフまわりの存在感を高めるラック。',''),('353c5.png','シートベルト（BUDDICAロゴ入り）','室内にもロゴ入りのオレンジを。','cover')]:
  detail+=f'<article class="detail-card">{img(photo,title,cls)}<div>{badge()}<h3>{title}</h3><p class="note">{desc}</p></div></article>'
 page=f'''<!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>BUDDICA × C.L.LINK カスタムジムニー｜After_04確認用</title><meta name="description" content="BUDDICAとC.L.LINKが仕上げたカスタムジムニー。FULL CUSTOMとLIGHT CUSTOM、2つのスタイルをご紹介。"><link rel="stylesheet" href="style.css"></head><body>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>BUDDICA × C.L.LINK カスタムジムニー｜After_04確認用</title><meta name="description" content="BUDDICAとC.L.LINKが仕上げたカスタムジムニー。FULL CUSTOMとLIGHT CUSTOM、2つのスタイルをご紹介。"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="BUDDICA">
+<meta property="og:title" content="BUDDICA × C.L.LINK カスタムジムニー">
+<meta property="og:description" content="BUDDICAとC.L.LINKが仕上げたカスタムジムニー。FULL CUSTOMとLIGHT CUSTOM、2つのスタイルをご紹介。">
+<meta property="og:url" content="{page_url}">
+<meta property="og:image" content="{image_url}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BUDDICA × C.L.LINK カスタムジムニー誕生。オレンジの背景に黒いカスタムジムニー。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BUDDICA × C.L.LINK カスタムジムニー">
+<meta name="twitter:description" content="FULL CUSTOMとLIGHT CUSTOM、2つのスタイルをご紹介。">
+<meta name="twitter:image" content="{image_url}">
+<meta name="twitter:image:alt" content="BUDDICA × C.L.LINK カスタムジムニー誕生。">
+<link rel="stylesheet" href="style.css"></head><body>
 <a class="skip-link" href="#main">本文へ移動</a>
 <header><a href="#" aria-label="ページ先頭">{img('89c2d.svg','BUDDICA × C.L.LINK','logo pc-logo',False)}{img('49323.svg','BUDDICA × C.L.LINK','logo sp-logo',False)}</a><nav aria-label="メインナビゲーション"><a class="en" href="#full">FULL CUSTOM</a><a class="en" href="#light">LIGHT CUSTOM</a>{button('先行受注のご相談',small=True)}</nav></header>
 <nav class="mobile-nav" aria-label="スタイル"><a href="#full">FULL CUSTOM</a><a href="#light">LIGHT CUSTOM</a></nav>
