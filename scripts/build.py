@@ -1,7 +1,7 @@
 from pathlib import Path
 import re,html,os
 from urllib.parse import urlparse
-site_url=os.environ.get("SITE_URL", "https://preview-jimny-after04.buddica-custom-jimny.pages.dev").rstrip("/")
+site_url=os.environ.get("SITE_URL", "https://fix-jimny-favicon-ogp.buddica-custom-jimny.pages.dev").rstrip("/")
 if urlparse(site_url).scheme != "https" or not urlparse(site_url).netloc:
  raise ValueError("SITE_URL must be an absolute HTTPS origin")
 page_url=html.escape(site_url+"/jimny/", quote=True)

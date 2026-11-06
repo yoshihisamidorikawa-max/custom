@@ -20,6 +20,6 @@ Production auto-deploy is disabled. Contact destination is pending.
 
 - Favicon: original vector emblem, SVG plus 32px PNG and 180px Apple touch icon.
 - OGP / Twitter card: `public/jimny/assets/ogp.png` (1200 × 630), composed from existing Figma assets.
-- `python scripts/build.py` regenerates metadata. The default absolute URL targets the stable `preview/jimny-after04` Pages alias, not an immutable deployment URL.
-- Merge this change into `preview/jimny-after04` to make the default OGP image URL available. Before production deployment, run `SITE_URL=https://lp.buddica.online python scripts/build.py` and commit the generated HTML (Pages currently has no build step).
+- `python scripts/build.py` regenerates metadata. The default absolute URL targets the stable `fix/jimny-favicon-ogp` Pages alias, not an immutable deployment URL.
+- Deploy `fix/jimny-favicon-ogp` to preview the page and OGP image before merging. Before production deployment, run `SITE_URL=https://lp.buddica.online python scripts/build.py` and commit the generated HTML (Pages currently has no build step).
 - Optional artwork regeneration: `python scripts/render-social.py` requires Inkscape and Noto Sans CJK JP. Deployment uses checked-in images and does not require these tools.
