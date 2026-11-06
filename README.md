@@ -15,3 +15,11 @@ Production auto-deploy is disabled. Contact destination is pending.
 - All consultation buttons open an accessible preview-only dialog. Replace these with the approved destination before production release.
 - Preview indexing is disabled using both HTML robots metadata and Cloudflare `_headers`.
 - The domain route `/jimny/` must be connected separately after design review; this branch does not change production routing.
+
+## Favicon and social sharing
+
+- Favicon: original vector emblem, SVG plus 32px PNG and 180px Apple touch icon.
+- OGP / Twitter card: `public/jimny/assets/ogp.png` (1200 × 630), composed from existing Figma assets.
+- `python scripts/build.py` regenerates metadata. The default absolute URL targets the stable `preview/jimny-after04` Pages alias, not an immutable deployment URL.
+- Merge this change into `preview/jimny-after04` to make the default OGP image URL available. Before production deployment, run `SITE_URL=https://lp.buddica.online python scripts/build.py` and commit the generated HTML (Pages currently has no build step).
+- Optional artwork regeneration: `python scripts/render-social.py` requires Inkscape and Noto Sans CJK JP. Deployment uses checked-in images and does not require these tools.
