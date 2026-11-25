@@ -12,7 +12,7 @@ full=[('フロント','CL20グリル（エンブレムレス）\nブラックLED
 light=[('フロント','CL20グリル（エンブレムレス）'),('足まわり','1インチリフトアップ\nキャリパーカバー（BUDDICAロゴ入り）'),('タイヤ・ホイール','ランドフット GWD\nグラントレック R/T01\n185/85R16（4本）'),('ルーフ','スクエアルーフラック'),('リア','リアゲートボックス\nリアラダー'),('オーニング','セミオート・タープ付き'),('室内装備','シートベルト（BUDDICAロゴ入り）\nカメラ・モニター\nラゲッジネットM')]
 def img(name,alt,cls='',lazy=True):return f'<img src="assets/{name}" alt="{alt}" class="{cls}" '+('loading="lazy" ' if lazy else 'fetchpriority="high" ')+ 'decoding="async">'
 def button(text,href=None,dark=False,small=False):return f'<'+('a href="'+href+'"' if href else 'button type="button" data-contact')+f' class="button {"dark" if dark else ""} {"small" if small else ""}">{text}'+('' if small else img('fa62b.svg','','arrow',False))+('</a>' if href else '</button>')
-order_actions = '<div class="order-actions"><button type="button" class="button" data-contact>先行受注を申し込む</button><a class="button store-link" href="https://www.buddica.jp/store/">店舗に相談する</a></div>'
+order_actions = '<div class="order-actions"><a class="button" href="https://forms.gle/vwnUPVFg4cSxxeyW6">先行受注を申し込む</a><a class="button store-link" href="https://www.buddica.jp/store/">店舗に相談する</a></div>'
 def price(n,label='車両込み参考価格'):return f'<div class="price"><p>{label}</p><div><strong>{n}</strong><b>万円〜</b><small>（税込）</small></div></div>'
 def badge(option=False):return f'<span class="badge {"option" if option else ""}">{"オプション" if option else "標準装備"}</span>'
 def notes():return '<p class="note">※参考販売価格はR6年式中古車（オーディオ無し）をベース車両とした価格となります。<br>※諸費用、オプション費用などは含まれておりません。<br>※写真はイメージです。実際の仕様、色、装着場所、装着状態などが異なる場合があります。</p>'
